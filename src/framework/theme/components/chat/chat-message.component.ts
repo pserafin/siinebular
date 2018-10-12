@@ -64,21 +64,20 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     <div class="message">
       <ng-container [ngSwitch]="type">
 
-        <nb-chat-message-file *ngSwitchCase="'file'"
-                              [sender]="sender" [date]="date" [message]="message" [files]="files">
+        <nb-chat-message-file *ngSwitchCase="'file'" [sender]="sender" [date]="date"
+          [message]="message" [files]="files" [dateFormat]="dateFormat">
         </nb-chat-message-file>
 
-        <nb-chat-message-quote *ngSwitchCase="'quote'"
-                              [sender]="sender" [date]="date" [message]="message" [quote]="quote">
+        <nb-chat-message-quote *ngSwitchCase="'quote'" [sender]="sender" [date]="date"
+          [message]="message" [quote]="quote" [dateFormat]="dateFormat">
         </nb-chat-message-quote>
 
-        <nb-chat-message-map *ngSwitchCase="'map'"
-                              [sender]="sender" [date]="date"
-                              [message]="message" [latitude]="latitude" [longitude]="longitude">
+        <nb-chat-message-map *ngSwitchCase="'map'" [sender]="sender" [date]="date"
+          [message]="message" [latitude]="latitude" [longitude]="longitude" [dateFormat]="dateFormat">
         </nb-chat-message-map>
 
-        <nb-chat-message-text *ngSwitchDefault
-                              [sender]="sender" [date]="date" [message]="message">
+        <nb-chat-message-text *ngSwitchDefault [sender]="sender" [date]="date"
+          [message]="message" [dateFormat]="dateFormat">
         </nb-chat-message-text>
       </ng-container>
     </div>
@@ -114,6 +113,7 @@ export class NbChatMessageComponent {
   }
 
   avatarStyle: SafeStyle;
+  dateFormat: string;
 
   /**
    * Determines if a message is a reply
@@ -179,6 +179,15 @@ export class NbChatMessageComponent {
    * @type {string}
    */
   @Input() type: string;
+
+  /**
+   * Chat message input placeholder text:
+   * @param {string} val
+   */
+  @Input('dateFormat')
+  private set setDateFormat(val: string) {
+    this.dateFormat = val;
+  }
 
   constructor(private domSanitizer: DomSanitizer) { }
 

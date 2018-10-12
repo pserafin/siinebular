@@ -69,7 +69,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       <input [(ngModel)]="message"
              [class.with-button]="showButton"
              type="text"
-             placeholder="{{ fileOver ? 'Drop file to send' : 'Type a message' }}"
+             placeholder="{{ fileOver ? filePlaceholder : textPlaceholder }}"
              (keyup.enter)="sendMessage()">
       <button *ngIf="showButton" class="btn" [class.with-icon]="!buttonTitle" (click)="sendMessage()">
         {{ buttonTitle }}<span *ngIf="!buttonTitle" [class]="buttonIcon"></span>
@@ -112,6 +112,18 @@ export class NbChatFormComponent {
    * @type {boolean}
    */
   @Input() dropFiles: boolean = false;
+
+  /**
+   * Text-input  placeholder
+   * @type {string}
+   */
+  @Input() textPlaceholder: string = 'Type a message';
+
+   /**
+   * File-input  placeholder
+   * @type {string}
+   */
+  @Input() filePlaceholder: string = 'Drop file to send';
 
   /**
    *

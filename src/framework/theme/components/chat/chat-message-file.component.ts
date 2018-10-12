@@ -16,7 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'nb-chat-message-file',
   template: `
-    <nb-chat-message-text [sender]="sender" [date]="date" [message]="message">
+    <nb-chat-message-text [sender]="sender" [date]="date" [message]="message" [dateFormat]="dateFormat">
       {{ message }}
     </nb-chat-message-text>
 
@@ -76,6 +76,12 @@ export class NbChatMessageFileComponent {
     });
     this.cd.detectChanges();
   }
+
+  /**
+   * Message send date format
+   * @type {string}
+   */
+  @Input() dateFormat: string;
 
   constructor(private cd: ChangeDetectorRef, private domSanitizer: DomSanitizer) {
   }

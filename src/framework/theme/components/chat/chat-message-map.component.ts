@@ -16,7 +16,9 @@ import { NbChatOptions } from './chat.options';
 @Component({
   selector: 'nb-chat-message-map',
   template: `
-    <nb-chat-message-file [files]="[file]" [message]="message" [sender]="sender" [date]="date"></nb-chat-message-file>
+    <nb-chat-message-file [files]="[file]" [message]="message"
+      [sender]="sender" [date]="date" [dateFormat]="dateFormat">
+    </nb-chat-message-file>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -51,6 +53,12 @@ export class NbChatMessageMapComponent {
    * @type {number}
    */
   @Input() longitude: number;
+
+  /**
+   * Message send date format
+   * @type {string}
+   */
+  @Input() dateFormat: string;
 
   get file() {
     return {
